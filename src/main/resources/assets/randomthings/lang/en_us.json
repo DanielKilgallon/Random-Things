@@ -23,5 +23,6 @@
   "item.randomthings.divining_rod_vanilla": "Vanilla Divining Rod",
   "item.randomthings.blood_rose_petal": "Blood Rose Petal",
   "gui.randomthings.advanced_redstone_torch.rs": "Red Strength",
-  "gui.randomthings.advanced_redstone_torch.gs": "Green Strength"
+  "gui.randomthings.advanced_redstone_torch.gs": "Green Strength",
+  "item.randomthings.time_in_a_bottle": "Time In A Bottle"
 }

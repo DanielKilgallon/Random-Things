@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["GGG", "TST", "ABA"],
+  "key": {
+    "S": {
+      "item": "minecraft:clock"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "T": {
+      "item": "minecraft:diamond"
+    },
+    "A": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "randomthings:time_in_a_bottle",
+    "count": 1
+  }
+}

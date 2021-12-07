@@ -65,6 +65,9 @@ public class ModItems
 		registerItemForBlock(registry, ModBlocks.BLOCK_OF_STICKS, ModBlocks.BLOCK_OF_STICKS_RETURNING);
 		registerItemForBlock(registry, ModBlocks.PLATFORM_OAK, ModBlocks.PLATFORM_SPRUCE, ModBlocks.PLATFORM_BIRCH, ModBlocks.PLATFORM_JUNGLE, ModBlocks.PLATFORM_ACACIA, ModBlocks.PLATFORM_DARKOAK);
 		registerItemForBlock(registry, ModBlocks.BLOOD_ROSE);
+
+		// Time In A Bottle
+		registerTimeInABottle(registry);
 	}
 
 	static ArrayList<Color> colorHolder = new ArrayList<Color>();
@@ -91,6 +94,10 @@ public class ModItems
 			itemInstance.setRegistryName(block.getRegistryName());
 			registry.register(itemInstance);
 		}
+	}
+
+	private static void registerTimeInABottle(IForgeRegistry<Item> registry) {
+		registry.register(new TimeInABottle(new Item.Properties().group(RT_ITEM_GROUP)).setRegistryName("time_in_a_bottle"));
 	}
 
 	public static void initItemGroup()
