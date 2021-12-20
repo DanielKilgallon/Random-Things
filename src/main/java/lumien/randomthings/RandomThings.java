@@ -1,12 +1,11 @@
 package lumien.randomthings;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import lumien.randomthings.asm.AsmHandler;
 import lumien.randomthings.block.FertilizedDirtBlock;
 import lumien.randomthings.block.ModBlocks;
+import lumien.randomthings.client.ClientProxy;
 import lumien.randomthings.client.renderer.DiviningRodRenderer;
+import lumien.randomthings.client.renderer.TimeAcceleratorRenderer;
 import lumien.randomthings.client.screen.ModScreens;
 import lumien.randomthings.client.vfx.VFXHandler;
 import lumien.randomthings.container.ModContainerTypes;
@@ -14,10 +13,14 @@ import lumien.randomthings.item.ModItems;
 import lumien.randomthings.lib.ModConstants;
 import lumien.randomthings.network.RTPacketHandler;
 import lumien.randomthings.tileentity.ModTileEntityTypes;
-import lumien.randomthings.worldgen.BloodRoseFeature;
+import lumien.randomthings.tileentity.TimeAcceleratorEntity;
 import lumien.randomthings.worldgen.ModFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -46,6 +49,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 @Mod(ModConstants.MOD_ID)
@@ -54,6 +60,9 @@ public class RandomThings
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	public static RandomThings INSTANCE;
+
+
+	public static ClientProxy proxy;
 
 	public RandomThings()
 	{
@@ -87,6 +96,8 @@ public class RandomThings
 				VFXHandler.INSTANCE.tick();
 			}
 		});
+
+		proxy = new ClientProxy();
 	}
 
 	private void setupCommon(final FMLCommonSetupEvent event)
@@ -131,7 +142,13 @@ public class RandomThings
 		@SubscribeEvent
 		public static void onTileEntityTypesRegistry(final RegistryEvent.Register<TileEntityType<?>> tileEntityTypeRegistryEvent)
 		{
-			ModTileEntityTypes.registerTypes(tileEntityTypeRegistryEvent);
+			ModTileEntityTypes.registerTileEntityTypes(tileEntityTypeRegistryEvent);
+		}
+
+		@SubscribeEvent
+		public static void onEntityTypesRegistry(final RegistryEvent.Register<EntityType<?>> EntityTypeRegistryEvent)
+		{
+			ModTileEntityTypes.registerEntityTypes(EntityTypeRegistryEvent);
 		}
 
 		@SubscribeEvent

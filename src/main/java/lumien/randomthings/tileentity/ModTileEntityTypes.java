@@ -21,19 +21,22 @@ public class ModTileEntityTypes {
     @ObjectHolder("blood_rose")
     public static TileEntityType<BloodRoseTileEntity> BLOOD_ROSE;
 
-    public static EntityType<TimeAcceleratorEntity> TIME_ACCELERATOR;
+    public static EntityType<TimeAcceleratorEntity> TIME_ACCELERATOR = EntityType.Builder.<TimeAcceleratorEntity>create(TimeAcceleratorEntity::new, EntityClassification.MISC)
+            .size(0.1F, 0.1F)
+            .setCustomClientFactory((spawnEntity, world) -> new TimeAcceleratorEntity(ModTileEntityTypes.TIME_ACCELERATOR, world))
+            .build("");
 
-    public static void registerTypes(RegistryEvent.Register<TileEntityType<?>> typeRegistryEvent) {
-        IForgeRegistry<TileEntityType<?>> registry = typeRegistryEvent.getRegistry();
+    public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> tileEntityRegistryEvent) {
+        IForgeRegistry<TileEntityType<?>> tileRegistry = tileEntityRegistryEvent.getRegistry();
 
-        registerSimple(registry, "advanced_redstone_torch", AdvancedRedstoneTorchTileEntity::new, ModBlocks.ADVANCED_REDSTONE_TORCH, ModBlocks.ADVANCED_WALL_REDSTONE_TORCH);
-        registerSimple(registry, "blood_rose", BloodRoseTileEntity::new, ModBlocks.BLOOD_ROSE);
+        registerSimple(tileRegistry, "advanced_redstone_torch", AdvancedRedstoneTorchTileEntity::new, ModBlocks.ADVANCED_REDSTONE_TORCH, ModBlocks.ADVANCED_WALL_REDSTONE_TORCH);
+        registerSimple(tileRegistry, "blood_rose", BloodRoseTileEntity::new, ModBlocks.BLOOD_ROSE);
     }
 
-    public static void registerEntities(RegistryEvent.Register<EntityType<?>> typeRegistryEvent) {
-        IForgeRegistry<EntityType<?>> registry = typeRegistryEvent.getRegistry();
+    public static void registerEntityTypes(RegistryEvent.Register<EntityType<?>> entityRegisterEvent) {
+        IForgeRegistry<EntityType<?>> EntityRegistry = entityRegisterEvent.getRegistry();
 
-        registry.register(TIME_ACCELERATOR);
+        EntityRegistry.register(TIME_ACCELERATOR.setRegistryName("time_in_a_bottle"));
     }
 
     private static void registerSimple(IForgeRegistry<TileEntityType<?>> registry, String name, Supplier<? extends TileEntity> factoryIn, Block... validBlocks) {

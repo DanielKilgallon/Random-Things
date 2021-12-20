@@ -17,18 +17,28 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * Time In A Bottle Item
+ * Heavily copied from https://github.com/haoict/time-in-a-bottle
+ */
 public class TimeInABottle extends Item {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private static final String[] NOTES = {"C", "D", "E", "F", "G2", "A2", "B2", "C2", "D2", "E2", "F2"};
-    public static final String TIME_DATA = "timeData";
-    public static final String STORED_TIME = "storedTime";
+    private static final String TIME_DATA = "timeData";
+    private static final String STORED_TIME = "storedTime";
 
     public TimeInABottle(Properties properties) {
         super(properties.maxStackSize(1));
@@ -38,6 +48,7 @@ public class TimeInABottle extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
+        LOGGER.error("Stop 1");
 
         if (world.isRemote) {
             return ActionResultType.PASS;
@@ -53,6 +64,7 @@ public class TimeInABottle extends Item {
             return ActionResultType.FAIL;
         }
 
+        LOGGER.error("Stop 2");
 
         boolean isCreativeMode = player != null && player.abilities.isCreativeMode;
 
@@ -60,6 +72,7 @@ public class TimeInABottle extends Item {
 
         // if previous Time Accelerator Entity exists already
         if (optionalTAEntity.isPresent()) {
+            LOGGER.error("Stop 3 and before");
             TimeAcceleratorEntity acceleratorEntity = optionalTAEntity.get();
             int currentRate = acceleratorEntity.getTimeRate();
             if (currentRate >= 5) {
@@ -71,23 +84,26 @@ public class TimeInABottle extends Item {
 
             int usedUpTime = (30 * 20) - acceleratorEntity.getRemainingTime();
             int timeAdded = usedUpTime / 2;
-
-            if (getStoredEnergy(itemStack) >= energyRequired || isCreativeMode) {
+            LOGGER.error("Stop 3");
+            if (!(getStoredEnergy(itemStack) >= energyRequired || isCreativeMode)) {
                 return ActionResultType.SUCCESS;
             }
 
             acceleratorEntity.setTimeRate(nextRate);
             acceleratorEntity.setRemainingTime(acceleratorEntity.getRemainingTime() + timeAdded);
+            LOGGER.error("Stop 4");
         } else {
-            if (getStoredEnergy(itemStack) >= getEnergyCost(1) || isCreativeMode) {
+            LOGGER.error("Stop 2.5");
+            if (!(getStoredEnergy(itemStack) >= getEnergyCost(1) || isCreativeMode)) {
                 return ActionResultType.SUCCESS;
             }
+            LOGGER.error("Stop 5");
 
             TimeAcceleratorEntity entityTA = new TimeAcceleratorEntity(context.getWorld(), pos, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
             entityTA.setRemainingTime(30 * 20);
             world.addEntity(entityTA);
         }
-
+        LOGGER.error("Stop 6");
         return ActionResultType.SUCCESS;
     }
 
@@ -160,6 +176,6 @@ public class TimeInABottle extends Item {
         int minutes = (storedSeconds % 3600) / 60;
         int seconds = storedSeconds % 60;
 
-        tooltip.add(new StringTextComponent(I18n.format("item.randomthings.time_in_a_bottle.tooltip", hours, String.format("%02d", minutes), String.format("%02d", seconds))));
+        tooltip.add(new StringTextComponent(I18n.format("item.randomthings.time_in_a_bottle.tooltip", hours, String.format("%02d", minutes), String.format("%02d", seconds))).applyTextStyle(TextFormatting.GREEN));
     }
 }

@@ -1,4 +1,6 @@
-Random Things
+Random Things Mod
+
+This is the source code for the Random Things Minecraft mod.
 
 Open Gradle Window in IntelliJ,
 expand 'Tasks', then 'fg_runs', then run 'genIntellijRuns',
@@ -15,6 +17,8 @@ From there, you rerun the 'RunServer' task, and a server should start this time.
 look at 'runClient' run configuration, the program arguments are WRONG.
 Change the line suspend=y to suspend=n, it halts the program until it gets a connection
 on port 8000 for some reason (it's the client, why the hell is it doing that)
+
+had to create client proxy for renderer
 
 # Error Issues:
 It seems that I needed to run the "publish" task to re-do the 'build' folder, which contains the .jar of the mod.
