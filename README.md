@@ -1,3 +1,5 @@
+# Random Things has no version for Minecraft 1.16.x and does not plan to. We are sorry.
+
 # Random Things Mod
 
 This is the source code for the Random Things Minecraft mod. Originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am playing around with this mod, and trying to get a working version for modern Minecraft versions.
