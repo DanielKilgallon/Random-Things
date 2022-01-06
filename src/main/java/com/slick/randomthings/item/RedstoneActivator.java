@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -33,8 +34,8 @@ public class RedstoneActivator extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         BlockPos blockPos = context.getClickedPos();
-        BlockEntity blockEntity = context.getPlayer().getLevel().getBlockEntity(blockPos);
-        System.out.println(blockEntity.toString());
+        BlockState blockState = context.getPlayer().getLevel().getBlockState(blockPos);
+        System.out.println(blockState);
         return InteractionResult.PASS;
     }
 
@@ -43,7 +44,7 @@ public class RedstoneActivator extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack item = player.getItemInHand(interactionHand);
         CompoundTag tickTag = item.getOrCreateTagElement(TICK_TAG);
-        tickTag.putInt(TICK_SETTING, 1);
+        tickTag.putInt(TICK_SETTING, tickTag.getInt(TICK_SETTING) + 1);
         item.save(tickTag);
         return InteractionResultHolder.success(item);
     }
