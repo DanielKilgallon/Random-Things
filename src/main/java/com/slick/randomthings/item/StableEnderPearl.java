@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -62,7 +63,7 @@ public class StableEnderPearl extends Item {
                 Level world = itemEntity.getCommandSenderWorld();
                 Player player = world.getPlayerByUUID(UUID.fromString(assignedPlayer));
                 if (player != null) {
-                    player.playSound(SoundEvents.ENDERMAN_TELEPORT, 100, 100);
+                    itemEntity.getLevel().playSound(null, itemEntity.getOnPos(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.5F, 0.5F);
 
                     if (world.dimension().equals(player.getCommandSenderWorld().dimension())) {
                         player.moveTo(itemEntity.position());

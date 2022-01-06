@@ -1,6 +1,5 @@
 package com.slick.randomthings.item;
 
-import com.slick.randomthings.render.RenderResizableCuboid;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
