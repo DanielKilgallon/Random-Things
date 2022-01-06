@@ -1,8 +1,9 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  # runs during prebuild
   - name: installing markdown-to-html
-    init: npm install -g markdown-to-html
+    init: cd docs/ # runs during prebuild
+  - name: install dependencies
+    command: npm install -g markdown-to-html
   - name: compile markdown to html
     command: markdown test.md > test.html
 
