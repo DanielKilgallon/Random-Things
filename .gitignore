@@ -20,7 +20,7 @@ build
 # other
 eclipse
 run
-randomthings
+randomthings/com/slick/randomthings/RandomThings/*
 
 # Files from Forge MDK
 forge*changelog.txt

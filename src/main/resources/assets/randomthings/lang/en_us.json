@@ -3,5 +3,8 @@
   "item.randomthings.stable_ender_pearl.boundto": "Bound to %s",
   "item.randomthings.position_filter": "Position Filter",
   "item.randomthings.position_filter_coordinates": "x:%d y:%d z:%d",
-  "item.randomthings.super_lubricent": "Super Lubricent"
+  "item.randomthings.super_lubricent": "Super Lubricent",
+  "item.randomthings.super_lubricent_boots": "Super Lubricent Boots",
+  "item.randomthings.redstone_activator": "Redstone Activator",
+  "item.randomthings.redstone_activator_setting": "Tick Setting: %d"
 }

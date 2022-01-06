@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " L ",
+    " O "
+  ],
+  "key": {
+    "O": {
+      "item": "randomthings:super_lubricent"
+    },
+    "L": {
+      "item": "minecraft:iron_boots"
+    }
+  },
+  "result": {
+    "item": "randomthings:super_lubricent_boots"
+  }
+}

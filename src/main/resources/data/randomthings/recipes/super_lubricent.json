@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    " L ",
+    " E "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:wheat_seeds"
+    },
+    "E": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "randomthings:super_lubricent"
+  }
+}
