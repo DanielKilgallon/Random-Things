@@ -1,3 +1,7 @@
+# stuff
+*.html
+randomthings/com/slick/randomthings/RandomThings/*
+
 # eclipse
 bin
 *.launch
@@ -20,7 +24,7 @@ build
 # other
 eclipse
 run
-randomthings/com/slick/randomthings/RandomThings/*
+docs/node_modules
 
 # Files from Forge MDK
 forge*changelog.txt

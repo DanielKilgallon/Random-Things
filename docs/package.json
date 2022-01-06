@@ -1,0 +1,14 @@
+{
+  "name": "random-things-docs",
+  "version": "1.0.0",
+  "description": "random things minecraft mod documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Slick",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-to-html": "^0.0.13"
+  }
+}
