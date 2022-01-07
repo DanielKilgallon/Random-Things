@@ -39,7 +39,7 @@ public class ModItems {
 
             @Override
             public int getDefenseForSlot(EquipmentSlot equipmentSlot) {
-                return 3;
+                return 2;
             }
 
             @Override
@@ -59,7 +59,7 @@ public class ModItems {
 
             @Override
             public String getName() {
-                return "Super Lubricent Boots";
+                return "super_lubricent_boots";
             }
 
             @Override

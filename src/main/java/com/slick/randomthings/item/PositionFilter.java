@@ -43,7 +43,6 @@ public class PositionFilter extends Item {
         positionTag.putInt(BLOCK_POS_Z, z);
         item.save(positionTag);
 
-//        RenderResizableCuboid.INSTANCE.renderCube(position);
         return InteractionResult.SUCCESS;
     }
 
