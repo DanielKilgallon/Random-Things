@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "randomthings:block/bean_crop_0"
+  }
+}

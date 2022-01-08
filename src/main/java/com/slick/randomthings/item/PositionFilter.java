@@ -53,7 +53,7 @@ public class PositionFilter extends Item {
             int x = positionTag.getInt(BLOCK_POS_X);
             int y = positionTag.getInt(BLOCK_POS_Y);
             int z = positionTag.getInt(BLOCK_POS_Z);
-            tooltip.add(new TranslatableComponent(I18n.get("item.randomthings.position_filter_coordinates", x, y, z)).withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(new TranslatableComponent(I18n.get("item.randomthings.position_filter.coordinates", x, y, z)).withStyle(ChatFormatting.DARK_PURPLE));
         }
     }
 

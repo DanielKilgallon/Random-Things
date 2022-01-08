@@ -54,7 +54,7 @@ public class RedstoneActivator extends Item {
         CompoundTag tickTag = itemStack.getOrCreateTagElement(TICK_TAG);
         int tickSetting = tickTag.getInt(TICK_SETTING);
         if (tickSetting != 0) {
-            tooltip.add(new TranslatableComponent(I18n.get("item.randomthings.redstone_activator_setting", tickSetting)).withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(new TranslatableComponent(I18n.get("item.randomthings.redstone_activator.setting", tickSetting)).withStyle(ChatFormatting.DARK_PURPLE));
         }
     }
 }

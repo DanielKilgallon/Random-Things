@@ -1,6 +1,8 @@
 package com.slick.randomthings;
 
+import com.slick.randomthings.block.ModBlocks;
 import com.slick.randomthings.item.ModItems;
+import com.slick.randomthings.item.SuperLubricentBoots;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,6 +38,8 @@ public class RandomThingsMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+
+        FMLJavaModLoadingContext.get().getModEventBus().register(new FrictionEventHandler());
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -83,8 +87,7 @@ public class RandomThingsMod {
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // register a new block here
-            LOGGER.info("HELLO from Register Block");
+            ModBlocks.registerBlocks(blockRegistryEvent);
         }
 
         @SubscribeEvent
