@@ -4,25 +4,27 @@ import com.slick.randomthings.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 
+import java.util.Random;
+
 public class BeanCrop extends CropBlock implements IPlantable {
 
-    public BeanCrop(Properties properties) {
-        super(properties);
+    public BeanCrop() {
+        super(Properties.copy(Blocks.WHEAT));
     }
 
-//    @Override
-//    public BlockState getStateForAge(int age) {
-//        return age > 1 ? ModBlocks.BEAN_CROP.sta:
-//    }
+    @Override
+    public boolean isBonemealSuccess(Level world, Random rand, BlockPos pos, BlockState state) {
+        return false;
+    }
 
     @Override
     public BlockState getPlant(BlockGetter world, BlockPos pos) {
-//        Blocks.WHEAT
         return this.defaultBlockState();
     }
 

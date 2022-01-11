@@ -1,19 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "   ",
-    " L ",
-    " E "
-  ],
-  "key": {
-    "L": {
-      "item": "minecraft:wheat_seeds"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle",
+      "data": 0
     },
-    "E": {
-      "item": "minecraft:glass_bottle"
+    {
+      "item": "randomthings:bean",
+      "data": 0
+    },
+    {
+      "item": "randomthings:bean",
+      "data": 0
+    },
+    {
+      "item": "randomthings:bean",
+      "data": 0
     }
-  },
+  ],
   "result": {
-    "item": "randomthings:super_lubricent"
+    "item": "randomthings:super_lubricent",
+    "count": 1
   }
 }
