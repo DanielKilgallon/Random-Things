@@ -7,5 +7,7 @@
   "item.randomthings.super_lubricent_boots": "Super Lubricent Boots",
   "item.randomthings.redstone_activator": "Redstone Activator",
   "item.randomthings.redstone_activator.setting": "Tick Setting: %d",
-  "item.randomthings.bean": "Bean"
+  "item.randomthings.bean": "Bean",
+  "item.randomthings.bean_crop": "Bean Crop",
+  "effect.randomthings.frictionless_mob_effect": "Frictionless"
 }

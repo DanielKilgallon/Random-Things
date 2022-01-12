@@ -1,14 +1,15 @@
 package com.slick.randomthings;
 
 import com.slick.randomthings.block.ModBlocks;
+import com.slick.randomthings.effect.FrictionlessEffect;
 import com.slick.randomthings.item.ModItems;
-import com.slick.randomthings.item.SuperLubricentBoots;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -19,10 +20,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("randomthings")
@@ -31,6 +34,8 @@ public class RandomThingsMod {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
+    public static MobEffect frictionLessEffect = new FrictionlessEffect(MobEffectCategory.BENEFICIAL, 0xffffff).setRegistryName("frictionless_mob_effect");
+
     public RandomThingsMod() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -38,8 +43,6 @@ public class RandomThingsMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-
-        FMLJavaModLoadingContext.get().getModEventBus().register(new FrictionEventHandler());
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -94,6 +97,15 @@ public class RandomThingsMod {
         public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
             ModItems.registerItems(itemRegistryEvent);
             ModItems.registerArmorItems(itemRegistryEvent);
+        }
+
+        @SubscribeEvent
+        public static void onEffectsRegistry(final RegistryEvent.Register<MobEffect> itemRegistryEvent) {
+            IForgeRegistry<MobEffect> r = itemRegistryEvent.getRegistry();
+
+//            MobEffects.FIRE_RESISTANCE
+//            .addAttributeModifier(Attributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", (double)0.2F, AttributeModifier.Operation.MULTIPLY_TOTAL)
+            r.register(frictionLessEffect);
         }
     }
 }

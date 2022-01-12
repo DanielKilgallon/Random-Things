@@ -1,11 +1,14 @@
 # Random Things Mod
+[![CodeQL](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml)
 
-This is the source code for the Random Things Minecraft mod. Originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am playing around with this mod, and trying to get a working version for modern Minecraft versions.
+This is the source code for the Random Things Minecraft mod. Originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am working on updating it to Minecraft 1.18.
 
 This repo is very much a work in progress. Do not expect clean code or concise documentation (yet!)
 
+If you would like to follow my progress/current task, head over to the Github [project](https://github.com/DanielKilgallon/Random-Things/projects/1).
+
 ## Documentation
-There is [lumien's wiki](https://lumien.net/rtwiki/), but that is not up to date with the current state of the mod. Thus there is an empty `docs` folder in this repo which I plan to eventually fill with documentation and host it as a website. Until then, this mod is a wild west of features and recipes.
+There is [lumien's wiki](https://lumien.net/rtwiki/), but that is not up to date with the current state of the mod. I have plans to create a website/wiki to showcase the mod features, but that is far in the future. Until then, this mod is a wild west of features and recipes.
 
 ## Contributing
 I appreciate all contributions to this project. This is a large project for one person to maintain solo, so any help is greatly appreciated.
