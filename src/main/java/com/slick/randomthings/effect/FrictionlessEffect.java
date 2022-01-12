@@ -2,12 +2,13 @@ package com.slick.randomthings.effect;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 public class FrictionlessEffect extends MobEffect {
+
+    private static final String CLASS_LOCATION = "net/minecraft/world/entity/LivingEntity.class";
+
     public FrictionlessEffect(MobEffectCategory effectCategory, int color) {
         super(effectCategory, color);
     }
@@ -15,11 +16,12 @@ public class FrictionlessEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
-            player.noPhysics = true;
-            /*entity.getCommandSenderWorld().explode(
-                null, entity.getX(), entity.getY(), entity.getZ(), amplifier+1, Explosion.Mode.NONE);
-        super.applyEffectTick(entity, amplifier);*/
-            // this.slipperiness = 1F / 0.98F;
+            player.setDiscardFriction(!player.isCrouching());
         }
+    }
+
+    @Override
+    public boolean isDurationEffectTick(int p_19455_, int p_19456_) {
+        return true;
     }
 }
