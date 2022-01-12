@@ -3,7 +3,6 @@ package com.slick.randomthings;
 import com.slick.randomthings.block.ModBlocks;
 import com.slick.randomthings.effect.FrictionlessEffect;
 import com.slick.randomthings.item.ModItems;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.item.CreativeModeTab;
@@ -11,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.DimensionDefaults;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -24,11 +22,10 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegistryManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.stream.Collectors;;
+import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("randomthings")
@@ -90,8 +87,7 @@ public class RandomThingsMod {
                 return new ItemStack(ModItems.STABLE_ENDER_PEARL);
             }
         };
-        public static int SPECTRE_ID = -343800852;
-        public static DimensionType SPECTRE_TYPE;
+
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
@@ -107,10 +103,11 @@ public class RandomThingsMod {
         @SubscribeEvent
         public static void onEffectsRegistry(final RegistryEvent.Register<MobEffect> itemRegistryEvent) {
             IForgeRegistry<MobEffect> r = itemRegistryEvent.getRegistry();
-
             r.register(frictionLessEffect);
         }
 
+        public static int SPECTRE_ID = -343800852;
+        public static DimensionType SPECTRE_TYPE;
         @SubscribeEvent
         public static void onDimensionRegistry(RegistryEvent.Register<Item> event) {
 //            DimensionManager.registerDimension(id, SPECTRE_TYPE = DimensionType.register("Spectre", "Spectre_", id, SpectreWorldProvider.class, true));

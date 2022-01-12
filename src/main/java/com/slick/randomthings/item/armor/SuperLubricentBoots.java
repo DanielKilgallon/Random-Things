@@ -1,4 +1,4 @@
-package com.slick.randomthings.item;
+package com.slick.randomthings.item.armor;
 
 import com.slick.randomthings.RandomThingsMod;
 import net.minecraft.world.effect.MobEffectInstance;
