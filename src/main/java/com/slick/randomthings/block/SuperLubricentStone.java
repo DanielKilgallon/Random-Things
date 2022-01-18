@@ -5,6 +5,6 @@ import net.minecraft.world.level.block.Blocks;
 
 public class SuperLubricentStone extends Block {
     public SuperLubricentStone() {
-        super(Properties.copy(Blocks.STONE).friction(1F));
+        super(Properties.copy(Blocks.STONE).friction(1.099F));
     }
 }
