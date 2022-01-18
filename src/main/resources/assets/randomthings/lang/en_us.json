@@ -1,4 +1,5 @@
 {
+  "itemGroup.randomthings": "Random Things",
   "item.randomthings.stable_ender_pearl": "Stable Ender Pearl",
   "item.randomthings.stable_ender_pearl.boundto": "Bound to %s",
   "item.randomthings.position_filter": "Position Filter",

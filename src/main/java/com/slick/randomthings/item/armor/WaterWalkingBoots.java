@@ -1,8 +1,6 @@
 package com.slick.randomthings.item.armor;
 
 import com.google.common.collect.Multimap;
-import com.slick.randomthings.RandomThingsMod;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -29,9 +27,7 @@ public class WaterWalkingBoots extends ArmorItem {
 
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
-        if (player.tickCount % 40 == 0) {
-            player.addEffect(new MobEffectInstance(RandomThingsMod.frictionLessEffect, 40, 1)); //40 ticks will prevent the ability from failing
-        }
+
     }
 
     @Override

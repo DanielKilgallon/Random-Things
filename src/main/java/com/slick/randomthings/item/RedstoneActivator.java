@@ -6,17 +6,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -29,23 +25,13 @@ public class RedstoneActivator extends Item {
         super(props);
     }
 
-    @NotNull
     @Override
     public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
         BlockPos blockPos = context.getClickedPos();
         BlockState blockState = context.getPlayer().getLevel().getBlockState(blockPos);
-        System.out.println(blockState);
-        return InteractionResult.PASS;
-    }
 
-    @NotNull
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
-        ItemStack item = player.getItemInHand(interactionHand);
-        CompoundTag tickTag = item.getOrCreateTagElement(TICK_TAG);
-        tickTag.putInt(TICK_SETTING, tickTag.getInt(TICK_SETTING) + 1);
-        item.save(tickTag);
-        return InteractionResultHolder.success(item);
+        return InteractionResult.SUCCESS;
     }
 
     @Override

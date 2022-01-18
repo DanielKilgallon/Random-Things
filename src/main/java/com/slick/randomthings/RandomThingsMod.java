@@ -3,6 +3,11 @@ package com.slick.randomthings;
 import com.slick.randomthings.block.ModBlocks;
 import com.slick.randomthings.effect.FrictionlessEffect;
 import com.slick.randomthings.item.ModItems;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.item.CreativeModeTab;
@@ -12,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -83,11 +89,15 @@ public class RandomThingsMod {
         public static final CreativeModeTab GROUP = new CreativeModeTab("randomthings") {
 
             @Override
+            public Component getDisplayName() {
+                return new TranslatableComponent("itemGroup.randomthings");
+            }
+
+            @Override
             public ItemStack makeIcon() {
                 return new ItemStack(ModItems.STABLE_ENDER_PEARL);
             }
         };
-
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
@@ -97,7 +107,6 @@ public class RandomThingsMod {
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> itemRegistryEvent) {
             ModItems.registerItems(itemRegistryEvent);
-            ModItems.registerArmorItems(itemRegistryEvent);
         }
 
         @SubscribeEvent
@@ -106,11 +115,13 @@ public class RandomThingsMod {
             r.register(frictionLessEffect);
         }
 
+
         public static int SPECTRE_ID = -343800852;
         public static DimensionType SPECTRE_TYPE;
         @SubscribeEvent
         public static void onDimensionRegistry(RegistryEvent.Register<Item> event) {
-//            DimensionManager.registerDimension(id, SPECTRE_TYPE = DimensionType.register("Spectre", "Spectre_", id, SpectreWorldProvider.class, true));
+            System.out.println("tomato");
+            ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation("spectre_dimension"));
         }
     }
 }
