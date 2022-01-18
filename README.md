@@ -1,18 +1,23 @@
 # Random Things Mod
-[![CodeQL](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml)
+[![Build](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml)
+[![License](https://img.shields.io/github/license/DanielKilgallon/Random-Things)](https://github.com/DanielKilgallon/Random-Things/blob/1.18.1/LICENSE.md)
+[![Release](https://img.shields.io/github/v/release/DanielKilgallon/Random-Things?include_prereleases)](https://github.com/DanielKilgallon/Random-Things/releases)
+
+[//]: # ( &#40;[![Downloads]&#40;https://img.shields.io/github/downloads/DanielKilgallon/Random-Things/total&#41;]&#40;https://github.com/DanielKilgallon/Random-Things/releases&#41;&#41;)
 
 This is the source code for the Random Things Minecraft mod. Originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am working on updating it to Minecraft 1.18.
 
 This repo is very much a work in progress. Do not expect clean code or concise documentation (yet!)
 
-If you would like to follow my progress/current task, head over to the Github [project](https://github.com/DanielKilgallon/Random-Things/projects/1).
+If you would like to follow my progress/current task, head over to the GitHub [project](https://github.com/DanielKilgallon/Random-Things/projects/1).
 
 ## Documentation
-There is [lumien's wiki](https://lumien.net/rtwiki/), but that is not up to date with the current state of the mod. I have plans to create a website/wiki to showcase the mod features, but that is far in the future. Until then, this mod is a wild west of features and recipes.
+There is [lumien's wiki](https://lumien.net/rtwiki/), but that is not up-to-date with the current state of the mod. I have plans to create a website/wiki to showcase the mod features, but that is far in the future. Until then, this mod is a wild west of features and recipes.
 
 ## Contributing
 I appreciate all contributions to this project. This is a large project for one person to maintain solo, so any help is greatly appreciated.
 
+---
 ## Developing
 ### Running Locally
 Open Gradle Window in IntelliJ,
