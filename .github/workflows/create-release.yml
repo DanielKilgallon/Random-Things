@@ -25,16 +25,21 @@ jobs:
     - name: Build Jar
       uses: nick-invision/retry@v2
       with:
-        timeout_minutes: 5
+        timeout_minutes: 10
         max_attempts: 2
         command: ./gradlew cleanJar build
+
+    - name: Get Date
+      id: date
+      run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
 
     - name: Create Release and Upload
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: true
+        title: Random Things-${{ github.ref_name }} ${{ steps.date.outputs.today }}
         files: |
-          LICENSE
+          LICENSE.md
           CHANGELOG.md
           ./build/libs/*.jar
