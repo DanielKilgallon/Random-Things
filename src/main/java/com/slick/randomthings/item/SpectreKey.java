@@ -2,6 +2,7 @@ package com.slick.randomthings.item;
 
 import com.slick.randomthings.RandomThingsMod;
 import com.slick.randomthings.handler.SimpleTeleporter;
+import com.slick.randomthings.handler.SpectreDimensionHandler;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -44,23 +45,11 @@ public class SpectreKey extends Item {
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity entity, int p_41415_) {
         if (entity instanceof Player player) {
-//            SpectreDimensionHandler spectreDimensionHandler;
-//            level.getServer().getPlayerList().getPlayer(player.getUUID()).teleportTo(level.getServer().getLevel(RandomThingsMod.SPECTRE_DIMENSION), player.getX(),player.getY(), player.getZ(), 0.0F, 0.0F);
-            MinecraftServer minecraftServer = level.getServer();
-            if (minecraftServer != null) {
-                ServerLevel spectreLevel = minecraftServer.getLevel(RandomThingsMod.SPECTRE_DIMENSION);
-                if (spectreLevel != null) {
-                    player.changeDimension(spectreLevel, new SimpleTeleporter());
-                } else {
-                    player.displayClientMessage(new TranslatableComponent("Cannot find Spectre Dimension..."), true);
-                }
-            }
-//            if ((spectreDimensionHandler = SpectreDimensionHandler.getInstance()) != null) {
-//                spectreDimensionHandler.teleportPlayerToSpectreCube(level, player);
-//            }
+            SpectreDimensionHandler spectreDimensionHandler;
 
-//            level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F));
-//            player.awardStat(Stats.ITEM_USED.get(this));
+            if ((spectreDimensionHandler = SpectreDimensionHandler.getInstance()) != null) {
+                spectreDimensionHandler.teleportPlayerToSpectreCube(level, player);
+            }
         }
     }
 }

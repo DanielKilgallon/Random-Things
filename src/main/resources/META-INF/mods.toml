@@ -7,9 +7,9 @@ modId="randomthings" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Random Things" #mandatory
 logoFile="randomthings.png" #optional
-credits="Thanks for this example mod goes to Java" #optional
+credits="Thanks goes to lumien231 for getting me into Minecraft mods!" #optional
 authors="lumien231 and Slick" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Random Things packed into one Mod.
+Random Things packed into one Mod. Originally maintained by lumien231, now maintained and developed by Slick
 '''

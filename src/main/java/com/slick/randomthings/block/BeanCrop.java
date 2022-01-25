@@ -8,11 +8,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class BeanCrop extends CropBlock implements IPlantable {
+public class BeanCrop extends CropBlock {
 
     public BeanCrop() {
         super(Properties.copy(Blocks.WHEAT));

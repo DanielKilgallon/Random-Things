@@ -1,5 +1,6 @@
 package com.slick.randomthings.handler;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -11,13 +12,22 @@ import java.util.function.Function;
 
 public class SimpleTeleporter implements ITeleporter {
 
-    @Override
-    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-        return repositionEntity.apply(true);
+    private BlockPos teleportPosition;
+
+    public SimpleTeleporter(BlockPos teleportPosition) {
+        this.teleportPosition = teleportPosition;
     }
 
     @Override
-    public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo) {
+    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+        Entity newEntity = repositionEntity.apply(false);
+        newEntity.teleportTo(teleportPosition.getX(), teleportPosition.getY(), teleportPosition.getZ());
+        return newEntity;
+    }
+
+    @Override
+    public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld,
+            Function<ServerLevel, PortalInfo> defaultPortalInfo) {
         return new PortalInfo(entity.position(), Vec3.ZERO, entity.getYRot(), entity.getXRot());
     }
 

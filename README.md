@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/DanielKilgallon/Random-Things)](https://github.com/DanielKilgallon/Random-Things/blob/1.18.1/LICENSE.md)
 [![Release](https://img.shields.io/github/v/release/DanielKilgallon/Random-Things?include_prereleases)](https://github.com/DanielKilgallon/Random-Things/releases)
 
-[//]: # ( &#40;[![Downloads]&#40;https://img.shields.io/github/downloads/DanielKilgallon/Random-Things/total&#41;]&#40;https://github.com/DanielKilgallon/Random-Things/releases&#41;&#41;)
+[![Downloads](https://img.shields.io/github/downloads/DanielKilgallon/Random-Things/total)](https://github.com/DanielKilgallon/Random-Things/releases)
 
 This is the source code for the Random Things Minecraft mod. This was originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am currently working on updating it to Minecraft 1.18.
 
