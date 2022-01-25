@@ -5,7 +5,7 @@
 
 [//]: # ( &#40;[![Downloads]&#40;https://img.shields.io/github/downloads/DanielKilgallon/Random-Things/total&#41;]&#40;https://github.com/DanielKilgallon/Random-Things/releases&#41;&#41;)
 
-This is the source code for the Random Things Minecraft mod. Originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am working on updating it to Minecraft 1.18.
+This is the source code for the Random Things Minecraft mod. This was originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am currently working on updating it to Minecraft 1.18.
 
 This repo is very much a work in progress. Do not expect clean code or concise documentation (yet!)
 
@@ -20,21 +20,13 @@ I appreciate all contributions to this project. This is a large project for one 
 ---
 ## Developing
 ### Running Locally
-Open Gradle Window in IntelliJ,
-expand 'Tasks', then 'fg_runs', then run 'genIntellijRuns',
+Open Gradle Window in IntelliJ, and look at tasks to run.
 
-run all of 'run' tasks, 'runClient', 'runData', 'runServer'.
+The relevant tasks are:
+- `genIntellijRuns` - creates relevant config for IntelliJ
+- `publish` - will build the .jar file in the `builds/libs/` folder.
+- `runClient` - starts Minecraft instance and injects mod files into it.
+- `runServer` - the first time it runs, it'll fail. You'll need to open the 'run' folder in the project, find the `eula.txt` file, open it, and change the flag to true. Now when you rerun the task, and a server will start.
 
-After that, run the "publish" task to make/remake the 'build' folder, which contains the .jar of the mod.
-This jar file needs to be recompiled every time I make a change. So run 'publish' task, then run the project with the 'runClient' run configuration, and you'll get an up-to-date version of the mod
-
-#### runServer:
-then, you'll need to open the 'run' folder in the project,
-look for the 'eula.txt' file, open it, and change that to true for the server to start.
-
-From there, you rerun the 'RunServer' task, and a server should start this time.
-
-#### runClient:
-look at 'runClient' run configuration, the program arguments are WRONG.
-Change the line suspend=y to suspend=n, it halts the program until it gets a connection
-on port 8000 for some reason (it's the client, is it doing that)
+### Common Errors:
+If `runClient` hangs and doesn't start an instance, look at runClient configuration in your IDE, the program arguments might be wrong. In the args, the command `suspend=y` makes the task wait on port 8000, so change it to `suspend=n` and now the task should run normally.

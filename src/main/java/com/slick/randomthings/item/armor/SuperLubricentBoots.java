@@ -26,7 +26,7 @@ public class SuperLubricentBoots extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
         if (player.tickCount % 40 == 0) {
-            player.addEffect(new MobEffectInstance(RandomThingsMod.frictionLessEffect, 40, 0)); //40 ticks will prevent the ability from failing
+            player.addEffect(new MobEffectInstance(RandomThingsMod.FRICTIONLESS_MOB_EFFECT, 40, 0)); //40 ticks will prevent the ability from failing
         }
     }
 }

@@ -12,19 +12,26 @@
     "coordinate_scale": 1,
     "ambient_light": 1,
     "fixed_time": 0,
-    "logical_height": 384,
+    "logical_height": 128,
     "infiniburn": "minecraft:infiniburn_overworld",
-    "min_y": -64,
-    "height": 384
+    "min_y": 0,
+    "height": 128
   },
   "generator": {
-    "type": "minecraft:flat",
     "settings": {
-      "biome": "randomthings:spectre_biome",
-      "layers": [],
       "structures": {
         "structures": {}
-      }
-    }
+      },
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 128
+        }
+      ],
+      "biome": "randomthings:spectre_biome",
+      "features": false,
+      "lakes": false
+    },
+    "type": "minecraft:flat"
   }
 }

@@ -3,9 +3,11 @@ package com.slick.randomthings.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
 
@@ -22,7 +24,6 @@ public class FrictionlessEffect extends MobEffect {
 //        AttributeInstance speed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
 //        if (entity instanceof Player player) {
         if (!entity.isCrouching()) {
-//               entity.handleRelativeFrictionAndCalculateMovement(new Vec3(10, 10, 10), 31.099F);
 //               float speed = entity.getSpeed();
 //               entity.setSpeed(speed * 1.099F);
             //{AttributeModifier:[{AttributeName:"generic.movementSpeed",Name:"generic.movementSpeed",Amount:0.5,Operation:0,UUIDLeast:8000,UUIDMost:4000}]}

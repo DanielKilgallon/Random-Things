@@ -5,10 +5,7 @@ import com.slick.randomthings.block.ModBlocks;
 import com.slick.randomthings.item.armor.SuperLubricentBoots;
 import com.slick.randomthings.item.armor.WaterWalkingBoots;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterials;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraftforge.event.RegistryEvent;
@@ -37,6 +34,7 @@ public class ModItems {
         r.register(new PositionFilter(new Item.Properties().tab(GROUP).stacksTo(1)).setRegistryName("position_filter"));
         r.register(new SuperLubricent(new Item.Properties().tab(GROUP).stacksTo(16)).setRegistryName("super_lubricent"));
         r.register(new RedstoneActivator(new Item.Properties().tab(GROUP).stacksTo(1)).setRegistryName("redstone_activator"));
+        r.register(new SpectreKey(new Item.Properties().tab(GROUP).stacksTo(1)).setRegistryName("spectre_key"));
 
         // register armor items
         r.register(new SuperLubricentBoots(ArmorMaterials.IRON, EquipmentSlot.FEET, new Item.Properties().tab(GROUP).stacksTo(1)).setRegistryName("super_lubricent_boots"));
