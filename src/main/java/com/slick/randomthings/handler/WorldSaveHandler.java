@@ -18,15 +18,17 @@ public class WorldSaveHandler extends WorldEvent {
     public static void onWorldSave(WorldEvent.Save event) {
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
-        if (server != null)
+        if (server != null) {
             server.getLevel(Level.OVERWORLD).getDataStorage().set("spectre_dim_data", SpectreDimensionHandler.getInstance());
+        }
     }
 
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event) {
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
-        if (server != null)
+        if (server != null) {
             server.getLevel(Level.OVERWORLD).getDataStorage().get(SpectreDimensionHandler::load, "spectre_dim_data");
+        }
     }
 }

@@ -13,13 +13,13 @@ import java.util.UUID;
 import com.slick.randomthings.RandomThingsMod;
 
 //TODO: Teleport Player back to overworld when leaving spectre dimension
+//TODO: Spectre Dimension data is held over between two worlds if minecraft instance is not fully closed before making another world
 public class SpectreDimensionHandler extends SavedData {
 
     public static final String ID = "SpectreHandler";
     private HashMap<UUID, SpectreCube> cubes;
     private int cubeNumber;
     private static SpectreDimensionHandler instance;
-    private Level spectreLevel;
 
     public SpectreDimensionHandler(int i) {
         cubes = new HashMap<>();
@@ -35,7 +35,6 @@ public class SpectreDimensionHandler extends SavedData {
 
     public void teleportPlayerToSpectreCube(Level level, Player player) {
         // tries to get the spectre dimension for the world
-        this.spectreLevel = level;
         MinecraftServer minecraftServer = level.getServer();
         ServerLevel serverSpectreLevel = null;
         if (minecraftServer != null) {
@@ -43,6 +42,7 @@ public class SpectreDimensionHandler extends SavedData {
         }
 
         if (serverSpectreLevel != null) {
+            super.setDirty();
             // Save Old Position / Dimension
             // CompoundTag compoundTag = player.getPersistentData();
             // compoundTag.putDouble("spectrePosX", player.getX());
@@ -55,7 +55,7 @@ public class SpectreDimensionHandler extends SavedData {
                 player.changeDimension(serverSpectreLevel, new SimpleTeleporter(cube.playerSpawnPosition));
             } else {
                 SpectreCube cube = new SpectreCube(player.getUUID(), cubeNumber);
-                cube.createCube(spectreLevel);
+                cube.createBaseCube(serverSpectreLevel);
                 cubes.put(player.getUUID(), cube);
                 cubeNumber++;
                 player.changeDimension(serverSpectreLevel, new SimpleTeleporter(cube.playerSpawnPosition));
@@ -73,11 +73,14 @@ public class SpectreDimensionHandler extends SavedData {
     }
 
     public static SpectreDimensionHandler load(CompoundTag compoundTag) {
-        SpectreDimensionHandler newHandler = new SpectreDimensionHandler(0);
+        SpectreDimensionHandler newHandler = SpectreDimensionHandler.getInstance();
         newHandler.cubeNumber = compoundTag.getInt("cubeNumber");
         newHandler.cubes.clear();
         for (String key : compoundTag.getAllKeys()) {
-            newHandler.cubes.put(UUID.fromString(key), new SpectreCube(UUID.fromString(key), newHandler.cubeNumber));
+            if (key.equals("cubeNumber")) {
+                continue;
+            }
+            newHandler.cubes.put(UUID.fromString(key), SpectreCube.load(compoundTag.getCompound(key)));
         }
         return newHandler;
     }
