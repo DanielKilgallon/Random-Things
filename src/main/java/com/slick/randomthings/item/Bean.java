@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 
-// TODO: Beans should place on dirt
 public class Bean extends Item implements IPlantable {
 
     public Bean(Properties properties) {
