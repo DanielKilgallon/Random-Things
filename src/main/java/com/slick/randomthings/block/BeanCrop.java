@@ -2,6 +2,7 @@ package com.slick.randomthings.block;
 
 import com.slick.randomthings.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -30,5 +31,10 @@ public class BeanCrop extends CropBlock {
     @Override
     protected ItemLike getBaseSeedId() {
         return ModItems.BEAN;
+    }
+
+    @Override
+    protected boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return blockState.is(Blocks.FARMLAND) || blockState.is(BlockTags.DIRT);
     }
 }

@@ -1,27 +1,37 @@
 package com.slick.randomthings.handler;
 
-import net.minecraft.core.BlockPos;
+import net.minecraft.commands.arguments.NbtTagArgument;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.nbt.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.saveddata.SavedData;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
 import com.slick.randomthings.RandomThingsMod;
+import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.level.storage.ServerLevelData;
+import net.minecraft.world.level.storage.WorldData;
+import net.minecraftforge.common.util.INBTSerializable;
 
-public class SpectreDimensionHandler {
+public class SpectreDimensionHandler extends SavedData {
 
     public static final String ID = "SpectreHandler";
-    private HashMap<UUID, BlockPos> cubes;
-    private int positionCounter;
+    private HashMap<UUID, SpectreCube> cubes;
+    private int cubeNumber;
     private static SpectreDimensionHandler instance;
+    private Level spectreLevel;
 
     public SpectreDimensionHandler(int i) {
         cubes = new HashMap<>();
-        positionCounter = i;
+        cubeNumber = i;
     }
 
     public static SpectreDimensionHandler getInstance() {
@@ -34,68 +44,52 @@ public class SpectreDimensionHandler {
 
     public void teleportPlayerToSpectreCube(Level level, Player player) {
         // tries to get the spectre dimension for the world
+        this.spectreLevel = level;
         MinecraftServer minecraftServer = level.getServer();
-        ServerLevel spectreLevel = null;
+        ServerLevel serverSpectreLevel = null;
         if (minecraftServer != null) {
-            spectreLevel = minecraftServer.getLevel(RandomThingsMod.SPECTRE_DIMENSION);
+            serverSpectreLevel = minecraftServer.getLevel(RandomThingsMod.SPECTRE_DIMENSION);
         }
 
-        if (spectreLevel != null) {
-
+        if (serverSpectreLevel != null) {
             // Save Old Position / Dimension
             // CompoundTag compoundTag = player.getPersistentData();
             // compoundTag.putDouble("spectrePosX", player.getX());
             // compoundTag.putDouble("spectrePosY", player.getY());
             // compoundTag.putDouble("spectrePosZ", player.getZ());
             // compoundTag.putInt("spectreDimension", 1);
-            // player.setPersistentData(compoundTag);
 
-            if (cubes.containsKey(player.getUUID())) {
-                BlockPos pos = cubes.get(player.getUUID());
-                player.changeDimension(spectreLevel, new SimpleTeleporter(pos));
+            // if (cubes.containsKey(player.getUUID())) {
+            if (false) {
+                SpectreCube cube = cubes.get(player.getUUID());
+                player.changeDimension(serverSpectreLevel, new SimpleTeleporter(cube.playerSpawnPosition));
             } else {
-                BlockPos pos = createNextSpectreCube(spectreLevel);
-                cubes.put(player.getUUID(), pos);
-                player.changeDimension(spectreLevel, new SimpleTeleporter(pos));
+                SpectreCube cube = new SpectreCube(player.getUUID(), spectreLevel, cubeNumber);
+                cube.createCube(spectreLevel);
+                cubes.put(player.getUUID(), cube);
+                cubeNumber++;
+                player.changeDimension(serverSpectreLevel, new SimpleTeleporter(cube.playerSpawnPosition));
             }
         }
     }
 
-    private BlockPos createNextSpectreCube(Level level) {
-        BlockPos uniquePlayerSpawn = new BlockPos(positionCounter * 16 + .5, 1, positionCounter * 16 + .5);
-        positionCounter++;
-        System.out.println("Creating new spectre cube at " + uniquePlayerSpawn);
-    
-        createSpaceForCube(level, uniquePlayerSpawn);
-        return uniquePlayerSpawn;
+    @Override
+    public CompoundTag save(CompoundTag compoundTag) {
+        System.out.println("tomato save");
+        compoundTag.putInt("cubeNumber", cubeNumber);
+        for (SpectreCube cube : cubes.values()) {
+            compoundTag.put(cube.owner.toString(), cube.save(new CompoundTag()));
+        }
+        return compoundTag;
     }
 
-    private void createSpaceForCube(Level level, BlockPos uniquePlayerSpawn) {
-        BlockPos corner1 = new BlockPos(uniquePlayerSpawn.getX(), 1, uniquePlayerSpawn.getZ());
-        BlockPos corner2 = new BlockPos(uniquePlayerSpawn.getX()+15, 2, uniquePlayerSpawn.getZ()+15);
 
-        int minX = Math.min(corner1.getX(), corner2.getX());
-		int minY = Math.min(corner1.getY(), corner2.getY());
-		int minZ = Math.min(corner1.getZ(), corner2.getZ());
-
-		int maxX = Math.max(corner1.getX(), corner2.getX());
-		int maxY = Math.max(corner1.getY(), corner2.getY());
-		int maxZ = Math.max(corner1.getZ(), corner2.getZ());
-
-		for (int x = minX; x <= maxX; x++)
-		{
-			for (int y = minY; y <= maxY; y++)
-			{
-				for (int z = minZ; z <= maxZ; z++)
-				{
-					if (x == minX || y == minY || z == minZ || x == maxX || y == maxY || z == maxZ)
-					{
-						// worldObj.setBlockState(new BlockPos(x, y, z), state, flag);
-                        // System.out.println("Setting block at " + x + " " + y + " " + z);
-                        level.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
-					}
-				}
-			}
-		}
+    public void load(CompoundTag compoundTag) {
+        System.out.println("tomato load");
+        cubeNumber = compoundTag.getInt("cubeNumber");
+        cubes.clear();
+        for (String key : compoundTag.getAllKeys()) {
+            cubes.put(UUID.fromString(key), new SpectreCube(UUID.fromString(key), spectreLevel, cubeNumber));
+        }
     }
 }

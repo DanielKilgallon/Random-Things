@@ -46,7 +46,6 @@ public class SpectreKey extends Item {
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity entity, int p_41415_) {
         if (entity instanceof Player player) {
             SpectreDimensionHandler spectreDimensionHandler;
-
             if ((spectreDimensionHandler = SpectreDimensionHandler.getInstance()) != null) {
                 spectreDimensionHandler.teleportPlayerToSpectreCube(level, player);
             }
