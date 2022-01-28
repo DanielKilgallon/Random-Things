@@ -21,12 +21,6 @@ public class SpectreKey extends Item {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack p_41409_, Level p_41410_, LivingEntity p_41411_) {
-        System.out.println("DONE");
-        return super.finishUsingItem(p_41409_, p_41410_, p_41411_);
-    }
-
-    @Override
     public int getUseDuration(ItemStack p_40680_) {
         return 72000;
     }

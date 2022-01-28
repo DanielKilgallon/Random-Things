@@ -16,7 +16,7 @@ public class SpectreCube {
     private static final int MAX_HEIGHT = 99;
     private static final int OFFSET = 32;
 
-    public SpectreCube(UUID owner, Level level, int cubeNumber) {
+    public SpectreCube(UUID owner, int cubeNumber) {
     	this.owner = owner;
         this.height = 2;
         this.playerSpawnPosition = new BlockPos(cubeNumber * CUBE_SIZE + 8, 1, cubeNumber * CUBE_SIZE + 8);

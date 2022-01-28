@@ -22,8 +22,7 @@ public class Bean extends Item implements IPlantable {
 
     @Override
     public BlockState getPlant(BlockGetter world, BlockPos pos) {
-        System.out.println("tomato");
-        return BeanCrop.stateById(1);
+        return ModBlocks.BEAN_CROP.defaultBlockState();
     }
 
     @Override
