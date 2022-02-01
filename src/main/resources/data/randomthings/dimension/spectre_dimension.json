@@ -24,7 +24,7 @@
       },
       "layers": [
         {
-          "block": "minecraft:bedrock",
+          "block": "randomthings:spectre_block",
           "height": 128
         }
       ],

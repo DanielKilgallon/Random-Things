@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
+//TODO: Position Filter does not show block it is bound to
 public class PositionFilter extends Item {
 
     public static final String BLOCK_POS_TAG = "blockPosTag";
