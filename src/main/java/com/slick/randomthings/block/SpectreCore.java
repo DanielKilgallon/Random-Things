@@ -5,21 +5,31 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SpectreCore extends BlockEntity {
-    protected SpectreCore(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
-        super(p_155228_, p_155229_, p_155230_);
+public class SpectreCore extends BaseEntityBlock {
+    protected SpectreCore() {
+		super(BlockBehaviour.Properties.copy(Blocks.BEDROCK));
+	 }
+
+	@Override
+	public RenderShape getRenderShape(BlockState p_49232_) {
+		return RenderShape.MODEL;
 	}
 
-    // @Override
-    // public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-    //     // TODO Auto-generated method stub
-    //     System.out.println("newBlockEntity");
-    //     return null;
-    // }
+    @Override
+    public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
+        // TODO Auto-generated method stub
+        System.out.println("newBlockEntity");
+        return null;
+    }
+
+	
+
 
     // public boolean triggerEvent(BlockState p_49226_, Level p_49227_, BlockPos p_49228_, int p_49229_, int p_49230_) {
     //     System.out.println("newBlockEntity");

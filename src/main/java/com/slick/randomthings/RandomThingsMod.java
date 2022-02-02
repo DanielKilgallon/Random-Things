@@ -61,6 +61,7 @@ public class RandomThingsMod {
         MinecraftForge.EVENT_BUS.register(this);
     }
     
+    //TODO: Add Assembly injection here?
     private void setupModInjects(final FMLConstructModEvent event) {
     }
 
@@ -133,7 +134,6 @@ public class RandomThingsMod {
         // /execute in randomthings:spectre_dimension run tp @s 100 100 100
         @SubscribeEvent
         public static void onDimensionRegistry(RegistryEvent.Register<Item> event) {
-//            Registry.register(Registry.CHUNK_GENERATOR, "spectre", SpectreChunkProvider.CODEC);
             SPECTRE_BIOME = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("randomthings","worldgen/biome"));
             SPECTRE_CHUNK_GENERATOR = ResourceKey.create(Registry.CHUNK_GENERATOR_REGISTRY, new ResourceLocation("randomthings","worldgen/spectre_chunk_generator"));
             SPECTRE_STEM = ResourceKey.create(Registry.LEVEL_STEM_REGISTRY, new ResourceLocation("randomthings","spectre_level_stem"));

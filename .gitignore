@@ -1,6 +1,7 @@
-# stuff
+# mod files
 *.html
 randomthings/com/slick/randomthings/RandomThings/*
+*.log
 
 # eclipse
 bin
@@ -15,11 +16,11 @@ out
 *.ipr
 *.iws
 *.iml
-.idea
+.idea/
 
 # gradle
-build
-.gradle
+build/
+.gradle/
 
 # other
 eclipse
@@ -30,4 +31,4 @@ docs/node_modules
 forge*changelog.txt
 
 # VSC
-.vscode
+.vscode/

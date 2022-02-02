@@ -2,6 +2,8 @@ package com.slick.randomthings.handler;
 
 import java.util.UUID;
 
+import com.slick.randomthings.block.ModBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -77,6 +79,8 @@ public class SpectreCube {
                 }
             }
         }
+        BlockPos coreSpot = new BlockPos(playerSpawnPosition.getX(), 0, playerSpawnPosition.getZ());
+        level.setBlock(coreSpot, ModBlocks.SPECTRE_CORE.defaultBlockState(), 3);
     }
 
     public CompoundTag save(CompoundTag compoundTag) {

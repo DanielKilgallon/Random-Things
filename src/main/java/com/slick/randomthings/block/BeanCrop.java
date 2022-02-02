@@ -15,7 +15,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-//TODO: Bean Crop has black background on sprite and not transparent
+//BUG: Bean Crop has black background on sprite and not transparent
 public class BeanCrop extends CropBlock {
     protected static final float AABB_OFFSET = 6.0F;
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {

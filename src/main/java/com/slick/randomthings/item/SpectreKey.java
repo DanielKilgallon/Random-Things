@@ -1,11 +1,6 @@
 package com.slick.randomthings.item;
 
-import com.slick.randomthings.RandomThingsMod;
-import com.slick.randomthings.handler.SimpleTeleporter;
 import com.slick.randomthings.handler.SpectreDimensionHandler;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;

@@ -13,7 +13,7 @@ import java.util.UUID;
 import com.slick.randomthings.RandomThingsMod;
 
 //TODO: Teleport Player back to overworld when leaving spectre dimension
-//TODO: Spectre Dimension data is held over between two worlds if minecraft instance is not fully closed before making another world
+//BUG: Spectre Dimension data is held over between two worlds if minecraft instance is not fully closed before making another world
 public class SpectreDimensionHandler extends SavedData {
 
     public static final String ID = "SpectreHandler";
@@ -51,9 +51,11 @@ public class SpectreDimensionHandler extends SavedData {
             // compoundTag.putInt("spectreDimension", 1);
 
             if (cubes.containsKey(player.getUUID())) {
+                System.out.println("old player found");
                 SpectreCube cube = cubes.get(player.getUUID());
                 player.changeDimension(serverSpectreLevel, new SimpleTeleporter(cube.playerSpawnPosition));
             } else {
+                System.out.println("new player found");
                 SpectreCube cube = new SpectreCube(player.getUUID(), cubeNumber);
                 cube.createBaseCube(serverSpectreLevel);
                 cubes.put(player.getUUID(), cube);

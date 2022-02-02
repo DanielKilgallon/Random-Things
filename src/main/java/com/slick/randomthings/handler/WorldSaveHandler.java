@@ -16,19 +16,23 @@ public class WorldSaveHandler extends WorldEvent {
 
     @SubscribeEvent
     public static void onWorldSave(WorldEvent.Save event) {
+        System.out.println("tomato save");
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
         if (server != null) {
-            server.getLevel(Level.OVERWORLD).getDataStorage().set("spectre_dim_data", SpectreDimensionHandler.getInstance());
+            System.out.println(event.getWorld().getServer().name());
+            server.overworld().getDataStorage().set("spectre_dim_data", SpectreDimensionHandler.getInstance());
         }
     }
 
     @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event) {
+        System.out.println("tomato load");
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
         if (server != null) {
-            server.getLevel(Level.OVERWORLD).getDataStorage().get(SpectreDimensionHandler::load, "spectre_dim_data");
+            System.out.println(event.getWorld().getServer().name());
+            server.overworld().getDataStorage().get(SpectreDimensionHandler::load, "spectre_dim_data");
         }
     }
 }

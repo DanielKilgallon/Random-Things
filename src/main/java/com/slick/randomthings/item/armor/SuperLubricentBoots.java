@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-//TODO: Does not compute friction correctly, infinite speed is not good. Please patch
+//BUG: Does not compute friction correctly, infinite speed is not good. Please patch
 public class SuperLubricentBoots extends ArmorItem {
 
     public SuperLubricentBoots(ArmorMaterial armorMaterial, EquipmentSlot equipmentSlot, Properties properties) {

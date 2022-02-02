@@ -18,10 +18,10 @@ public class ModBlocks {
     public static Block SUPER_LUBRICENT_STONE = new SuperLubricentStone().setRegistryName("super_lubricent_stone");
     @ObjectHolder("spectre_block")
     public static Block SPECTRE_BLOCK = new SpectreBlock().setRegistryName("spectre_block");
-    // @ObjectHolder("spectre_core")
-    // public static Block SPECTRE_CORE = new SpectreCore().setRegistryName("spectre_core");
+    @ObjectHolder("spectre_core")
+    public static Block SPECTRE_CORE = new SpectreCore().setRegistryName("spectre_core");
 
-    public static List<Block> BLOCKS = Arrays.asList(BEAN_CROP, SUPER_LUBRICENT_STONE, SPECTRE_BLOCK);
+    public static List<Block> BLOCKS = Arrays.asList(BEAN_CROP, SUPER_LUBRICENT_STONE, SPECTRE_BLOCK, SPECTRE_CORE);
 
     public static void registerBlocks(final RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> r = event.getRegistry();
