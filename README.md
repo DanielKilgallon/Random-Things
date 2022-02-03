@@ -2,8 +2,8 @@
 [![Build](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/DanielKilgallon/Random-Things/actions/workflows/codeql-analysis.yml)
 [![License](https://img.shields.io/github/license/DanielKilgallon/Random-Things)](https://github.com/DanielKilgallon/Random-Things/blob/1.18.1/LICENSE.md)
 [![Release](https://img.shields.io/github/v/release/DanielKilgallon/Random-Things?include_prereleases)](https://github.com/DanielKilgallon/Random-Things/releases)
-
 [![Downloads](https://img.shields.io/github/downloads/DanielKilgallon/Random-Things/total)](https://github.com/DanielKilgallon/Random-Things/releases)
+[![wakatime](https://wakatime.com/badge/user/2e9479bb-ca4d-4c1e-8f34-68d16794ad5e/project/92b6974f-ff6c-480c-a2b1-7d44e1cb836c.svg)](https://wakatime.com/badge/user/2e9479bb-ca4d-4c1e-8f34-68d16794ad5e/project/92b6974f-ff6c-480c-a2b1-7d44e1cb836c)
 
 This is the source code for the Random Things Minecraft mod. This was originally created and maintained by [lumien231](https://github.com/lumien231/Random-Things), I am currently working on updating it to Minecraft 1.18.
 

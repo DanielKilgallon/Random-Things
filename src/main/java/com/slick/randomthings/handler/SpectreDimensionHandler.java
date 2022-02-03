@@ -16,21 +16,12 @@ import com.slick.randomthings.RandomThingsMod;
 //BUG: Spectre Dimension data is held over between two worlds if minecraft instance is not fully closed before making another world
 public class SpectreDimensionHandler extends SavedData {
 
-    public static final String ID = "SpectreHandler";
-    private HashMap<UUID, SpectreCube> cubes;
+    private final HashMap<UUID, SpectreCube> cubes;
     private int cubeNumber;
-    private static SpectreDimensionHandler instance;
 
     public SpectreDimensionHandler(int i) {
         cubes = new HashMap<>();
         cubeNumber = i;
-    }
-
-    public static SpectreDimensionHandler getInstance() {
-        if (instance == null) {
-            instance = new SpectreDimensionHandler(0);
-        }
-        return instance;
     }
 
     public void teleportPlayerToSpectreCube(Level level, Player player) {
@@ -75,9 +66,7 @@ public class SpectreDimensionHandler extends SavedData {
     }
 
     public static SpectreDimensionHandler load(CompoundTag compoundTag) {
-        SpectreDimensionHandler newHandler = SpectreDimensionHandler.getInstance();
-        newHandler.cubeNumber = compoundTag.getInt("cubeNumber");
-        newHandler.cubes.clear();
+        SpectreDimensionHandler newHandler = new SpectreDimensionHandler(compoundTag.getInt("cubeNumber"));
         for (String key : compoundTag.getAllKeys()) {
             if (key.equals("cubeNumber")) {
                 continue;
@@ -85,5 +74,9 @@ public class SpectreDimensionHandler extends SavedData {
             newHandler.cubes.put(UUID.fromString(key), SpectreCube.load(compoundTag.getCompound(key)));
         }
         return newHandler;
+    }
+
+    public SpectreCube getCube(UUID uuid) {
+        return cubes.getOrDefault(uuid, null);
     }
 }

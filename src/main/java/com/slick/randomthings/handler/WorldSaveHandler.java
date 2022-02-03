@@ -1,7 +1,6 @@
 package com.slick.randomthings.handler;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,8 +9,17 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = "randomthings")
 public class WorldSaveHandler extends WorldEvent {
 
+    private static SpectreDimensionHandler spectreDimInstance;
+
     public WorldSaveHandler(LevelAccessor world) {
         super(world);
+    }
+
+    public static SpectreDimensionHandler getSpectreDimensionHandler() {
+        if (spectreDimInstance == null) {
+            spectreDimInstance = new SpectreDimensionHandler(0);
+        }
+        return spectreDimInstance;
     }
 
     @SubscribeEvent
@@ -20,8 +28,7 @@ public class WorldSaveHandler extends WorldEvent {
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
         if (server != null) {
-            System.out.println(event.getWorld().getServer().name());
-            server.overworld().getDataStorage().set("spectre_dim_data", SpectreDimensionHandler.getInstance());
+            server.overworld().getDataStorage().set("spectre_dim_data", getSpectreDimensionHandler());
         }
     }
 
@@ -31,8 +38,7 @@ public class WorldSaveHandler extends WorldEvent {
         LevelAccessor levelaccessor = event.getWorld();
         MinecraftServer server = levelaccessor.getServer();
         if (server != null) {
-            System.out.println(event.getWorld().getServer().name());
-            server.overworld().getDataStorage().get(SpectreDimensionHandler::load, "spectre_dim_data");
+            spectreDimInstance = server.overworld().getDataStorage().get(SpectreDimensionHandler::load, "spectre_dim_data");
         }
     }
 }

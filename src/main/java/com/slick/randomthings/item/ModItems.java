@@ -24,12 +24,16 @@ public class ModItems {
     @ObjectHolder("bean")
     public static Item BEAN = new ItemNameBlockItem(ModBlocks.BEAN_CROP, (new Item.Properties()).tab(GROUP)).setRegistryName("bean");
 
+    @ObjectHolder("ectoplasm")
+    public static Item ECTOPLASM = new Ectoplasm(new Item.Properties().tab(GROUP).stacksTo(16)).setRegistryName("ectoplasm");
+
     public static void registerItems(final RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> r = event.getRegistry();
 
         // register items
         r.register(STABLE_ENDER_PEARL);
         r.register(BEAN);
+        r.register(ECTOPLASM);
 
         r.register(new PositionFilter(new Item.Properties().tab(GROUP).stacksTo(1)).setRegistryName("position_filter"));
         r.register(new SuperLubricent(new Item.Properties().tab(GROUP).stacksTo(16)).setRegistryName("super_lubricent"));

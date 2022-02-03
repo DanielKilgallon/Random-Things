@@ -1,6 +1,5 @@
 package com.slick.randomthings.item;
 
-import com.slick.randomthings.block.BeanCrop;
 import com.slick.randomthings.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -1,7 +1,8 @@
 {
-  "parent": "block/cube_all",
-  "textures":
-  {
-    "all": "randomthings:block/spectre_core"
+  "parent": "block/orientable",
+  "textures": {
+    "side": "randomthings:block/spectre_block",
+    "front":"randomthings:block/spectre_block",
+    "top": "randomthings:block/spectre_core"
   }
 }

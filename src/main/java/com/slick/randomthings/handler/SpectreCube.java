@@ -7,6 +7,7 @@ import com.slick.randomthings.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 public class SpectreCube {
@@ -15,14 +16,13 @@ public class SpectreCube {
     public BlockPos playerSpawnPosition;
 
     private static final int CUBE_SIZE = 16;
-    private static final int MAX_HEIGHT = 99;
+    private static final int MAX_HEIGHT = 100;
     private static final int OFFSET = 32;
 
     public SpectreCube(UUID owner, int cubeNumber) {
         this.owner = owner;
-        this.height = 2;
-        this.playerSpawnPosition = new BlockPos(cubeNumber * CUBE_SIZE + 8, 1,
-                cubeNumber * CUBE_SIZE + 8);
+        this.height = 3;
+        this.playerSpawnPosition = new BlockPos(cubeNumber * CUBE_SIZE + 8, 1, cubeNumber * CUBE_SIZE + 8);
     }
 
     private SpectreCube(UUID owner, int height, BlockPos playerSpawnPosition) {
@@ -31,17 +31,20 @@ public class SpectreCube {
         this.playerSpawnPosition = playerSpawnPosition;
     }
 
-    private void changeHeight(ServerLevel level, int add) {
-        int newHeight = add + height;
-        if (newHeight < MAX_HEIGHT) {
-            for (int i = height; i < newHeight; i++) {
-                generateNewSlice(level, i);
-            }
-            height = newHeight;
+    public int addHeight(Level level, int add) {
+        int oldHeight = height;
+        int newHeight = height + add;
+        if (newHeight > MAX_HEIGHT) {
+            newHeight = MAX_HEIGHT;
         }
+        for (int i = height; i < newHeight; i++) {
+            generateNewSlice(level, i);
+        }
+        height = newHeight;
+        return newHeight - oldHeight;
     }
 
-    private void generateNewSlice(ServerLevel level, int curHeight) {
+    private void generateNewSlice(Level level, int curHeight) {
         BlockPos corner1 = new BlockPos(playerSpawnPosition.getX() - 8, curHeight, playerSpawnPosition.getZ() - 8);
         BlockPos corner2 = new BlockPos(playerSpawnPosition.getX() + 7, curHeight, playerSpawnPosition.getZ() + 7);
 
@@ -53,7 +56,7 @@ public class SpectreCube {
 
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {
-                level.setBlock(new BlockPos(x, curHeight, z), Blocks.AIR.defaultBlockState(), 3);
+                level.setBlockAndUpdate(new BlockPos(x, curHeight, z), Blocks.AIR.defaultBlockState());
             }
         }
     }
@@ -74,13 +77,13 @@ public class SpectreCube {
             for (int y = minY; y <= maxY; y++) {
                 for (int z = minZ; z <= maxZ; z++) {
                     if (x == minX || y == minY || z == minZ || x == maxX || y == maxY || z == maxZ) {
-                        level.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
+                        level.setBlockAndUpdate(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState());
                     }
                 }
             }
         }
         BlockPos coreSpot = new BlockPos(playerSpawnPosition.getX(), 0, playerSpawnPosition.getZ());
-        level.setBlock(coreSpot, ModBlocks.SPECTRE_CORE.defaultBlockState(), 3);
+        level.setBlockAndUpdate(coreSpot, ModBlocks.SPECTRE_CORE.defaultBlockState());
     }
 
     public CompoundTag save(CompoundTag compoundTag) {

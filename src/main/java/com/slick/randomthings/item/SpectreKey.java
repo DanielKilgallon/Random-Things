@@ -1,6 +1,7 @@
 package com.slick.randomthings.item;
 
-import com.slick.randomthings.handler.SpectreDimensionHandler;
+import com.slick.randomthings.handler.WorldSaveHandler;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,10 +35,7 @@ public class SpectreKey extends Item {
     @Override
     public void releaseUsing(ItemStack itemStack, Level level, LivingEntity entity, int p_41415_) {
         if (entity instanceof Player player) {
-            SpectreDimensionHandler spectreDimensionHandler;
-            if ((spectreDimensionHandler = SpectreDimensionHandler.getInstance()) != null) {
-                spectreDimensionHandler.teleportPlayerToSpectreCube(level, player);
-            }
+            WorldSaveHandler.getSpectreDimensionHandler().teleportPlayerToSpectreCube(level, player);
         }
     }
 }
