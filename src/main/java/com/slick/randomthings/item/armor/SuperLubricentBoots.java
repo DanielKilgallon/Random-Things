@@ -1,7 +1,5 @@
 package com.slick.randomthings.item.armor;
 
-import com.slick.randomthings.RandomThingsMod;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -26,8 +24,9 @@ public class SuperLubricentBoots extends ArmorItem {
 
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
-        if (player.tickCount % 40 == 0) {
-            player.addEffect(new MobEffectInstance(RandomThingsMod.FRICTIONLESS_MOB_EFFECT, 40, 0)); //40 ticks will prevent the ability from failing
-        }
+        player.setDiscardFriction(!player.isShiftKeyDown());
+        super.onArmorTick(stack, world, player);
     }
+
+
 }
